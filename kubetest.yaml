@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubetest
+spec:
+  selector:
+    matchLabels:
+      app: kubetest
+  template:
+    metadata:
+      labels:
+        app: kubetest
+        run: kubetest
+    spec:
+      containers:
+      - name: kubetest
+        image: localhost:32000/kubetest:latest
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+          - mountPath: /app
+            name: kubetest-volume
+        imagePullPolicy: IfNotPresent
+      volumes:
+      - name: kubetest-volume
+        hostPath:
+          path: /opt/kubetest
+          type: Directory
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubetest
+  labels:
+    run: kubetest
+spec:
+  selector:
+    app: kubetest
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    run: kubetest
