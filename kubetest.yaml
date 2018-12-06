@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: kubetest
-        image: localhost:32000/kubetest:latest
+        image: localhost:32000/kubetest:v1.0.0
         ports:
         - containerPort: 5000
         volumeMounts:
