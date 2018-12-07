@@ -32,7 +32,7 @@ apiVersion: v1
 metadata:
   name: kubetest
   labels:
-    run: kubetest
+    app: kubetest
 spec:
   selector:
     app: kubetest
