@@ -16,15 +16,15 @@ spec:
         image: localhost:32000/kubetest:v1.0.0
         ports:
         - containerPort: 5000
+        imagePullPolicy: Always
         volumeMounts:
           - mountPath: /app
             name: kubetest-volume
             readOnly: true
-        imagePullPolicy: Always
       volumes:
       - name: kubetest-volume
         hostPath:
-          path: /opt/kubetest
+          path: /home/noah/kubetest
           type: Directory
 ---
 kind: Service
@@ -40,5 +40,4 @@ spec:
   - name: http
     port: 5000
     protocol: TCP
-    targetPort: 5000
   type: NodePort

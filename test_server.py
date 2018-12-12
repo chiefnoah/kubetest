@@ -3,8 +3,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def kube():
-    return "Hello Kubernetes!"
+    return "Hello Kubernetes!\n"
 
 @app.route("/healthz")
 def health():
-    return "ok", 200
+    return "ok\n", 200
